@@ -239,7 +239,7 @@ autocmd Filetype java nnoremap <F5> :w <bar> exec '!javac '.shellescape('%'). ' 
 autocmd filetype java nnoremap <F6> :w <bar> exec '!java -cp ./bin '.shellescape('%:r')<CR>
 
 " 格式化快捷键 =
-set equalprg=clang-format\ -style=file\ --fallback-style=Microsoft
+set equalprg=clang-format
 
 let g:tlist_markdown_settings = 'markdown;h:Headlins'
 
