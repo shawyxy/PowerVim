@@ -195,10 +195,10 @@ set fenc=" "
 "显示匹配
 set showmatch
 "括号匹配
-inoremap ( ()<ESC>i
+"inoremap ( ()<ESC>i
 "inoremap [ []<ESC>i
-inoremap ' ''<ESC>i
-inoremap " ""<ESC>i
+"inoremap ' ''<ESC>i
+"inoremap " ""<ESC>i
 inoremap { {}<ESC>i
 set selectmode=mouse,key
 set selection=exclusive
