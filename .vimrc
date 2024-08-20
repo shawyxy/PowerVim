@@ -1,5 +1,3 @@
-" Hello，我是PowerVim的作者，程序员Carl，欢迎关注我的微信公众号：代码随想录 
-"
 " 定义快捷键的前缀，即<Leader>
 let mapleader=";"
 
@@ -19,21 +17,21 @@ set nocompatible
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 "set autocmd
-set autoindent		" always set autoindenting on 自动缩进
+set autoindent      " always set autoindenting on 自动缩进
 " indent C++ autoindent private public keyword 
 set cindent
 set cinoptions=g-1
 "if has("vms")
-"  set nobackup		" do not keep a backup file, use versions instead
+"  set nobackup     " do not keep a backup file, use versions instead
 "else
-"  set backup		" keep a backup file
+"  set backup       " keep a backup file
 "endif
 set nobackup        "I hate backup files.
 set number
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
+set history=50      " keep 50 lines of command line history
+set ruler       " show the cursor position all the time
+set showcmd     " display incomplete commands
+set incsearch       " do incremental searching
 "设置非兼容模式
 set nocp
 
@@ -191,16 +189,17 @@ endif
 
 
 "花括号自动格式化，首行一个tab
-autocmd FileType cpp,java inoremap { {<CR>}<ESC>kA<CR>
+"autocmd FileType cpp,java inoremap { {<CR>}<ESC>kA<CR>
 
 set fenc=" "
 "显示匹配
 set showmatch
 "括号匹配
 inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
+"inoremap [ []<ESC>i
 inoremap ' ''<ESC>i
 inoremap " ""<ESC>i
+inoremap { {}<ESC>i
 set selectmode=mouse,key
 set selection=exclusive
 set mouse=n "可视模式下使用鼠标，set mouse=a这个命令导致在vim下复制粘贴不好用
@@ -232,42 +231,16 @@ syntax on
 vnoremap <C-c> :w! ~/tmp/clipboard.txt <CR>
 inoremap <C-v> <Esc>:r ~/tmp/clipboard.txt <CR>
 " 编译快捷键
-autocmd filetype python nnoremap <F1> :w <bar> exec '!python '.shellescape('%')<CR> autocmd filetype c nnoremap <F1> :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
-autocmd filetype cpp nnoremap <F1> :w <bar> exec '!g++ --std=c++11 -pthread '.shellescape('%').' -o ./bin/'.shellescape('%:r').' && ./bin/'.shellescape('%:r')<CR>
-" autocmd filetype dot nnoremap <F1> :w <bar> exec '!dot -Tsvg '.shellescape('%').' > ./svg/'.shellescape('%:r').' && open ./bin/'.shellescape('%:r')<CR>
-autocmd filetype dot nnoremap <F1> :w <bar> exec '!dot -Tsvg sqlparse.dot > sqlparse.svg'<CR>
-autocmd Filetype java nnoremap <F1> :w <bar> exec '!javac '.shellescape('%'). ' -d ./bin'<CR>
-autocmd filetype java nnoremap <F2> :w <bar> exec '!java -cp ./bin '.shellescape('%:r')<CR>
+autocmd filetype python nnoremap <F5> :w <bar> exec '!python '.shellescape('%')<CR> autocmd filetype c nnoremap <F5> :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
+autocmd filetype cpp nnoremap <F5> :w <bar> exec '!g++ --std=c++11 -pthread '.shellescape('%').' -o ./bin/'.shellescape('%:r').' && ./bin/'.shellescape('%:r')<CR>
+" autocmd filetype dot nnoremap <F5> :w <bar> exec '!dot -Tsvg '.shellescape('%').' > ./svg/'.shellescape('%:r').' && open ./bin/'.shellescape('%:r')<CR>
+autocmd filetype dot nnoremap <F5> :w <bar> exec '!dot -Tsvg sqlparse.dot > sqlparse.svg'<CR>
+autocmd Filetype java nnoremap <F5> :w <bar> exec '!javac '.shellescape('%'). ' -d ./bin'<CR>
+autocmd filetype java nnoremap <F6> :w <bar> exec '!java -cp ./bin '.shellescape('%:r')<CR>
 
 
 let g:tlist_markdown_settings = 'markdown;h:Headlins'
-"新建.c,.h,.sh,.Java文件，自动插入文件头
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.Java,*.go exec ":call SetTitle()"
-"""定义函数SetTitle，自动插入文件头
-func SetTitle()
-    "如果文件类型为.sh文件
-    if &filetype == 'sh'
-        call setline(1,"\#########################################################################")
-        call append(line("."),   "\# File Name:    ".expand("%"))
-        call append(line(".")+1, "\# Author:       程序员Carl")
-        call append(line(".")+2, "\# mail:         programmercarl@163.com")
-        call append(line(".")+3, "\# Created Time: ".strftime("%c"))
-        call append(line(".")+4, "\#########################################################################")
-        call append(line(".")+5, "\#!/bin/bash")
-        call append(line(".")+6, "")
-    else
-        call setline(1, "/* ************************************************************************")
-        call append(line("."),   "> File Name:     ".expand("%"))
-        call append(line(".")+1, "> Author:        程序员Carl")
-        call append(line(".")+2, "> 微信公众号:    代码随想录")
-        call append(line(".")+3, "> Created Time:  ".strftime("%c"))
-        call append(line(".")+4, "> Description:   ")
-        call append(line(".")+5, " ************************************************************************/")
-        call append(line(".")+6, "")
-    endif
-    "新建文件后，自动定位到文件末尾
-    autocmd BufNewFile * normal G
-endfunc
+
 
 
 " shortcut for markdown
